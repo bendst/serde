@@ -21,9 +21,9 @@
 ///
 /// ```rust
 /// # #[macro_use]
-/// # extern crate serde;
+/// # extern crate serde2;
 /// #
-/// # use serde::de::{value, Deserializer, Visitor};
+/// # use serde2::de::{value, Deserializer, Visitor};
 /// #
 /// # struct MyDeserializer;
 /// #
@@ -61,9 +61,9 @@
 ///
 /// ```rust
 /// # #[macro_use]
-/// # extern crate serde;
+/// # extern crate serde2;
 /// #
-/// # use serde::de::{value, Deserializer, Visitor};
+/// # use serde2::de::{value, Deserializer, Visitor};
 /// #
 /// # struct MyDeserializer;
 /// #
@@ -96,11 +96,11 @@
 ///
 /// ```rust
 /// # #[macro_use]
-/// # extern crate serde;
+/// # extern crate serde2;
 /// #
 /// # use std::marker::PhantomData;
 /// #
-/// # use serde::de::{value, Deserializer, Visitor};
+/// # use serde2::de::{value, Deserializer, Visitor};
 /// #
 /// # struct MyDeserializer<V>(PhantomData<V>);
 /// #
@@ -175,7 +175,7 @@ macro_rules! forward_to_deserialize_any_helper {
         forward_to_deserialize_any_method!{deserialize_i64<$l, $v>()}
     };
     (i128<$l:tt, $v:ident>) => {
-        serde_if_integer128! {
+        serde2_if_integer128! {
             forward_to_deserialize_any_method!{deserialize_i128<$l, $v>()}
         }
     };
@@ -192,7 +192,7 @@ macro_rules! forward_to_deserialize_any_helper {
         forward_to_deserialize_any_method!{deserialize_u64<$l, $v>()}
     };
     (u128<$l:tt, $v:ident>) => {
-        serde_if_integer128! {
+        serde2_if_integer128! {
             forward_to_deserialize_any_method!{deserialize_u128<$l, $v>()}
         }
     };

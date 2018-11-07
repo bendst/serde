@@ -13,7 +13,7 @@ pub enum Token {
     /// A serialized `bool`.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// assert_tokens(&true, &[Token::Bool(true)]);
     /// ```
@@ -22,7 +22,7 @@ pub enum Token {
     /// A serialized `i8`.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// assert_tokens(&0i8, &[Token::I8(0)]);
     /// ```
@@ -31,7 +31,7 @@ pub enum Token {
     /// A serialized `i16`.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// assert_tokens(&0i16, &[Token::I16(0)]);
     /// ```
@@ -40,7 +40,7 @@ pub enum Token {
     /// A serialized `i32`.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// assert_tokens(&0i32, &[Token::I32(0)]);
     /// ```
@@ -49,7 +49,7 @@ pub enum Token {
     /// A serialized `i64`.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// assert_tokens(&0i64, &[Token::I64(0)]);
     /// ```
@@ -58,7 +58,7 @@ pub enum Token {
     /// A serialized `u8`.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// assert_tokens(&0u8, &[Token::U8(0)]);
     /// ```
@@ -67,7 +67,7 @@ pub enum Token {
     /// A serialized `u16`.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// assert_tokens(&0u16, &[Token::U16(0)]);
     /// ```
@@ -76,7 +76,7 @@ pub enum Token {
     /// A serialized `u32`.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// assert_tokens(&0u32, &[Token::U32(0)]);
     /// ```
@@ -85,7 +85,7 @@ pub enum Token {
     /// A serialized `u64`.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// assert_tokens(&0u64, &[Token::U64(0)]);
     /// ```
@@ -94,7 +94,7 @@ pub enum Token {
     /// A serialized `f32`.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// assert_tokens(&0f32, &[Token::F32(0.0)]);
     /// ```
@@ -103,7 +103,7 @@ pub enum Token {
     /// A serialized `f64`.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// assert_tokens(&0f64, &[Token::F64(0.0)]);
     /// ```
@@ -112,7 +112,7 @@ pub enum Token {
     /// A serialized `char`.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// assert_tokens(&'\n', &[Token::Char('\n')]);
     /// ```
@@ -121,7 +121,7 @@ pub enum Token {
     /// A serialized `str`.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// let s = String::from("transient");
     /// assert_tokens(&s, &[Token::Str("transient")]);
@@ -131,7 +131,7 @@ pub enum Token {
     /// A borrowed `str`.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// let s: &str = "borrowed";
     /// assert_tokens(&s, &[Token::BorrowedStr("borrowed")]);
@@ -141,7 +141,7 @@ pub enum Token {
     /// A serialized `String`.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// let s = String::from("owned");
     /// assert_tokens(&s, &[Token::String("owned")]);
@@ -160,7 +160,7 @@ pub enum Token {
     /// A serialized `Option<T>` containing none.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// let opt = None::<char>;
     /// assert_tokens(&opt, &[Token::None]);
@@ -172,7 +172,7 @@ pub enum Token {
     /// The tokens of the value follow after this header.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// let opt = Some('c');
     /// assert_tokens(&opt, &[
@@ -185,7 +185,7 @@ pub enum Token {
     /// A serialized `()`.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// assert_tokens(&(), &[Token::Unit]);
     /// ```
@@ -195,12 +195,12 @@ pub enum Token {
     ///
     /// ```rust
     /// # #[macro_use]
-    /// # extern crate serde_derive;
+    /// # extern crate serde2_derive;
     /// #
-    /// # extern crate serde;
-    /// # extern crate serde_test;
+    /// # extern crate serde2;
+    /// # extern crate serde2_test;
     /// #
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// # fn main() {
     /// #[derive(Serialize, Deserialize, PartialEq, Debug)]
@@ -215,12 +215,12 @@ pub enum Token {
     ///
     /// ```rust
     /// # #[macro_use]
-    /// # extern crate serde_derive;
+    /// # extern crate serde2_derive;
     /// #
-    /// # extern crate serde;
-    /// # extern crate serde_test;
+    /// # extern crate serde2;
+    /// # extern crate serde2_test;
     /// #
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// # fn main() {
     /// #[derive(Serialize, Deserialize, PartialEq, Debug)]
@@ -243,12 +243,12 @@ pub enum Token {
     ///
     /// ```rust
     /// # #[macro_use]
-    /// # extern crate serde_derive;
+    /// # extern crate serde2_derive;
     /// #
-    /// # extern crate serde;
-    /// # extern crate serde_test;
+    /// # extern crate serde2;
+    /// # extern crate serde2_test;
     /// #
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// # fn main() {
     /// #[derive(Serialize, Deserialize, PartialEq, Debug)]
@@ -269,12 +269,12 @@ pub enum Token {
     ///
     /// ```rust
     /// # #[macro_use]
-    /// # extern crate serde_derive;
+    /// # extern crate serde2_derive;
     /// #
-    /// # extern crate serde;
-    /// # extern crate serde_test;
+    /// # extern crate serde2;
+    /// # extern crate serde2_test;
     /// #
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// # fn main() {
     /// #[derive(Serialize, Deserialize, PartialEq, Debug)]
@@ -300,7 +300,7 @@ pub enum Token {
     /// `SeqEnd`.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// let vec = vec!['a', 'b', 'c'];
     /// assert_tokens(&vec, &[
@@ -321,7 +321,7 @@ pub enum Token {
     /// After this header are the elements of the tuple, followed by `TupleEnd`.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// let tuple = ('a', 100);
     /// assert_tokens(&tuple, &[
@@ -343,12 +343,12 @@ pub enum Token {
     ///
     /// ```rust
     /// # #[macro_use]
-    /// # extern crate serde_derive;
+    /// # extern crate serde2_derive;
     /// #
-    /// # extern crate serde;
-    /// # extern crate serde_test;
+    /// # extern crate serde2;
+    /// # extern crate serde2_test;
     /// #
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// # fn main() {
     /// #[derive(Serialize, Deserialize, PartialEq, Debug)]
@@ -375,12 +375,12 @@ pub enum Token {
     ///
     /// ```rust
     /// # #[macro_use]
-    /// # extern crate serde_derive;
+    /// # extern crate serde2_derive;
     /// #
-    /// # extern crate serde;
-    /// # extern crate serde_test;
+    /// # extern crate serde2;
+    /// # extern crate serde2_test;
     /// #
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// # fn main() {
     /// #[derive(Serialize, Deserialize, PartialEq, Debug)]
@@ -411,7 +411,7 @@ pub enum Token {
     /// After this header are the entries of the map, followed by `MapEnd`.
     ///
     /// ```rust
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// use std::collections::BTreeMap;
     ///
@@ -439,12 +439,12 @@ pub enum Token {
     ///
     /// ```rust
     /// # #[macro_use]
-    /// # extern crate serde_derive;
+    /// # extern crate serde2_derive;
     /// #
-    /// # extern crate serde;
-    /// # extern crate serde_test;
+    /// # extern crate serde2;
+    /// # extern crate serde2_test;
     /// #
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// # fn main() {
     /// #[derive(Serialize, Deserialize, PartialEq, Debug)]
@@ -476,12 +476,12 @@ pub enum Token {
     ///
     /// ```rust
     /// # #[macro_use]
-    /// # extern crate serde_derive;
+    /// # extern crate serde2_derive;
     /// #
-    /// # extern crate serde;
-    /// # extern crate serde_test;
+    /// # extern crate serde2;
+    /// # extern crate serde2_test;
     /// #
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// # fn main() {
     /// #[derive(Serialize, Deserialize, PartialEq, Debug)]
@@ -511,12 +511,12 @@ pub enum Token {
     ///
     /// ```rust
     /// # #[macro_use]
-    /// # extern crate serde_derive;
+    /// # extern crate serde2_derive;
     /// #
-    /// # extern crate serde;
-    /// # extern crate serde_test;
+    /// # extern crate serde2;
+    /// # extern crate serde2_test;
     /// #
-    /// # use serde_test::{assert_tokens, Token};
+    /// # use serde2_test::{assert_tokens, Token};
     /// #
     /// # fn main() {
     /// #[derive(Serialize, Deserialize, PartialEq, Debug)]

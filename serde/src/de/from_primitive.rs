@@ -179,7 +179,7 @@ impl_from_primitive_for_uint!(u64);
 impl_from_primitive_for_float!(f32);
 impl_from_primitive_for_float!(f64);
 
-serde_if_integer128! {
+serde2_if_integer128! {
     impl FromPrimitive for i128 {
         #[inline]
         fn from_i8(n: i8) -> Option<Self> {

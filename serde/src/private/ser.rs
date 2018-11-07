@@ -15,7 +15,7 @@ use self::content::{
     Content, ContentSerializer, SerializeStructVariantAsMapValue, SerializeTupleVariantAsMapValue,
 };
 
-/// Used to check that serde(getter) attributes return the expected type.
+/// Used to check that serde2(getter) attributes return the expected type.
 /// Not public API.
 pub fn constrain<T: ?Sized>(t: &T) -> &T {
     t

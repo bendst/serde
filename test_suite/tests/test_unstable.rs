@@ -10,12 +10,12 @@
 
 #[cfg(feature = "unstable")]
 #[macro_use]
-extern crate serde_derive;
+extern crate serde2_derive;
 
 #[cfg(feature = "unstable")]
 extern crate serde;
 #[cfg(feature = "unstable")]
-extern crate serde_test;
+extern crate serde2_test as serde_test;
 
 // This test target is convoluted with the actual #[test] in a separate file to
 // get it so that the stable compiler does not need to parse the code of the

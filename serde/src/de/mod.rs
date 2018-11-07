@@ -22,7 +22,7 @@
 //! standard library types. The complete list is below. All of these can be
 //! deserialized using Serde out of the box.
 //!
-//! Additionally, Serde provides a procedural macro called [`serde_derive`] to
+//! Additionally, Serde provides a procedural macro called [`serde2_derive`] to
 //! automatically generate [`Deserialize`] implementations for structs and enums
 //! in your program. See the [derive section of the manual] for how to use this.
 //!
@@ -38,7 +38,7 @@
 //! # The Deserializer trait
 //!
 //! [`Deserializer`] implementations are provided by third-party crates, for
-//! example [`serde_json`], [`serde_yaml`] and [`bincode`].
+//! example [`serde2_json`], [`serde2_yaml`] and [`bincode`].
 //!
 //! A partial list of well-maintained formats is given on the [Serde
 //! website][data formats].
@@ -107,17 +107,17 @@
 //!    - SocketAddrV4
 //!    - SocketAddrV6
 //!
-//! [Implementing `Deserialize`]: https://serde.rs/impl-deserialize.html
+//! [Implementing `Deserialize`]: https://serde2.rs/impl-deserialize.html
 //! [`Deserialize`]: ../trait.Deserialize.html
 //! [`Deserializer`]: ../trait.Deserializer.html
 //! [`LinkedHashMap<K, V>`]: https://docs.rs/linked-hash-map/*/linked_hash_map/struct.LinkedHashMap.html
 //! [`bincode`]: https://github.com/TyOverby/bincode
 //! [`linked-hash-map`]: https://crates.io/crates/linked-hash-map
-//! [`serde_derive`]: https://crates.io/crates/serde_derive
-//! [`serde_json`]: https://github.com/serde-rs/json
-//! [`serde_yaml`]: https://github.com/dtolnay/serde-yaml
-//! [derive section of the manual]: https://serde.rs/derive.html
-//! [data formats]: https://serde.rs/#data-formats
+//! [`serde2_derive`]: https://crates.io/crates/serde2_derive
+//! [`serde2_json`]: https://github.com/serde2-rs/json
+//! [`serde2_yaml`]: https://github.com/dtolnay/serde2-yaml
+//! [derive section of the manual]: https://serde2.rs/derive.html
+//! [data formats]: https://serde2.rs/#data-formats
 
 use lib::*;
 
@@ -143,7 +143,7 @@ macro_rules! declare_error_trait {
         /// Every `Deserializer` declares an `Error` type that encompasses both
         /// general-purpose deserialization errors as well as errors specific to the
         /// particular deserialization format. For example the `Error` type of
-        /// `serde_json` can represent errors like an invalid JSON escape sequence or an
+        /// `serde2_json` can represent errors like an invalid JSON escape sequence or an
         /// unterminated string literal, in addition to the error cases that are part of
         /// this trait.
         ///
@@ -155,7 +155,7 @@ macro_rules! declare_error_trait {
         /// The [example data format] presented on the website shows an error
         /// type appropriate for a basic JSON data format.
         ///
-        /// [example data format]: https://serde.rs/data-format.html
+        /// [example data format]: https://serde2.rs/data-format.html
         pub trait Error: Sized $(+ $($supertrait)::+)* {
             /// Raised when there is general error when deserializing a type.
             ///
@@ -174,7 +174,7 @@ macro_rules! declare_error_trait {
             /// #     }
             /// # }
             /// #
-            /// use serde::de::{self, Deserialize, Deserializer};
+            /// use serde2::de::{self, Deserialize, Deserializer};
             ///
             /// impl<'de> Deserialize<'de> for IpAddr {
             ///     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -301,7 +301,7 @@ declare_error_trait!(Error: Sized + Debug + Display);
 /// ```rust
 /// # use std::fmt;
 /// #
-/// # use serde::de::{self, Unexpected, Visitor};
+/// # use serde2::de::{self, Unexpected, Visitor};
 /// #
 /// # struct Example;
 /// #
@@ -426,7 +426,7 @@ impl<'a> fmt::Display for Unexpected<'a> {
 /// ```rust
 /// # use std::fmt;
 /// #
-/// # use serde::de::{self, Unexpected, Visitor};
+/// # use serde2::de::{self, Unexpected, Visitor};
 /// #
 /// # struct Example;
 /// #
@@ -449,7 +449,7 @@ impl<'a> fmt::Display for Unexpected<'a> {
 /// Outside of a `Visitor`, `&"..."` can be used.
 ///
 /// ```rust
-/// # use serde::de::{self, Unexpected};
+/// # use serde2::de::{self, Unexpected};
 /// #
 /// # fn example<E>() -> Result<(), E>
 /// # where
@@ -495,7 +495,7 @@ impl<'a> Display for Expected + 'a {
 /// standard library types. The complete list is [here][de]. All of these can
 /// be deserialized using Serde out of the box.
 ///
-/// Additionally, Serde provides a procedural macro called `serde_derive` to
+/// Additionally, Serde provides a procedural macro called `serde2_derive` to
 /// automatically generate `Deserialize` implementations for structs and enums
 /// in your program. See the [derive section of the manual][derive] for how to
 /// use this.
@@ -509,9 +509,9 @@ impl<'a> Display for Expected + 'a {
 /// `LinkedHashMap<K, V>` type that is deserializable by Serde because the crate
 /// provides an implementation of `Deserialize` for it.
 ///
-/// [de]: https://docs.serde.rs/serde/de/index.html
-/// [derive]: https://serde.rs/derive.html
-/// [impl-deserialize]: https://serde.rs/impl-deserialize.html
+/// [de]: https://docs.serde2.rs/serde2/de/index.html
+/// [derive]: https://serde2.rs/derive.html
+/// [impl-deserialize]: https://serde2.rs/impl-deserialize.html
 ///
 /// # Lifetime
 ///
@@ -519,14 +519,14 @@ impl<'a> Display for Expected + 'a {
 /// borrowed by `Self` when deserialized. See the page [Understanding
 /// deserializer lifetimes] for a more detailed explanation of these lifetimes.
 ///
-/// [Understanding deserializer lifetimes]: https://serde.rs/lifetimes.html
+/// [Understanding deserializer lifetimes]: https://serde2.rs/lifetimes.html
 pub trait Deserialize<'de>: Sized {
     /// Deserialize this value from the given Serde deserializer.
     ///
     /// See the [Implementing `Deserialize`][impl-deserialize] section of the
     /// manual for more information about how to implement this method.
     ///
-    /// [impl-deserialize]: https://serde.rs/impl-deserialize.html
+    /// [impl-deserialize]: https://serde2.rs/impl-deserialize.html
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>;
@@ -570,7 +570,7 @@ pub trait Deserialize<'de>: Sized {
 /// owned data.
 ///
 /// ```rust
-/// # use serde::de::{Deserialize, DeserializeOwned};
+/// # use serde2::de::{Deserialize, DeserializeOwned};
 /// # use std::io::{Read, Result};
 /// #
 /// # trait Ignore {
@@ -591,7 +591,7 @@ pub trait Deserialize<'de>: Sized {
 /// bounds is explained in more detail on the page [Understanding deserializer
 /// lifetimes].
 ///
-/// [Understanding deserializer lifetimes]: https://serde.rs/lifetimes.html
+/// [Understanding deserializer lifetimes]: https://serde2.rs/lifetimes.html
 pub trait DeserializeOwned: for<'de> Deserialize<'de> {}
 impl<T> DeserializeOwned for T where T: for<'de> Deserialize<'de> {}
 
@@ -609,7 +609,7 @@ impl<T> DeserializeOwned for T where T: for<'de> Deserialize<'de> {}
 /// The canonical API for stateless deserialization looks like this:
 ///
 /// ```rust
-/// # use serde::Deserialize;
+/// # use serde2::Deserialize;
 /// #
 /// # enum Error {}
 /// #
@@ -623,7 +623,7 @@ impl<T> DeserializeOwned for T where T: for<'de> Deserialize<'de> {}
 /// of accepting a seed as input:
 ///
 /// ```rust
-/// # use serde::de::DeserializeSeed;
+/// # use serde2::de::DeserializeSeed;
 /// #
 /// # enum Error {}
 /// #
@@ -644,7 +644,7 @@ impl<T> DeserializeOwned for T where T: for<'de> Deserialize<'de> {}
 /// borrowed by `Self::Value` when deserialized. See the page [Understanding
 /// deserializer lifetimes] for a more detailed explanation of these lifetimes.
 ///
-/// [Understanding deserializer lifetimes]: https://serde.rs/lifetimes.html
+/// [Understanding deserializer lifetimes]: https://serde2.rs/lifetimes.html
 ///
 /// # Example
 ///
@@ -659,7 +659,7 @@ impl<T> DeserializeOwned for T where T: for<'de> Deserialize<'de> {}
 /// use std::fmt;
 /// use std::marker::PhantomData;
 ///
-/// use serde::de::{Deserialize, DeserializeSeed, Deserializer, SeqAccess, Visitor};
+/// use serde2::de::{Deserialize, DeserializeSeed, Deserializer, SeqAccess, Visitor};
 ///
 /// // A DeserializeSeed implementation that uses stateful deserialization to
 /// // append array elements onto the end of an existing vector. The preexisting
@@ -854,16 +854,16 @@ where
 ///    it is seeing a map. If the data format supports
 ///    `Deserializer::deserialize_any`, it will drive the Visitor using whatever
 ///    type it sees in the input. JSON uses this approach when deserializing
-///    `serde_json::Value` which is an enum that can represent any JSON
+///    `serde2_json::Value` which is an enum that can represent any JSON
 ///    document. Without knowing what is in a JSON document, we can deserialize
-///    it to `serde_json::Value` by going through
+///    it to `serde2_json::Value` by going through
 ///    `Deserializer::deserialize_any`.
 ///
 /// 2. The various `deserialize_*` methods. Non-self-describing formats like
 ///    Bincode need to be told what is in the input in order to deserialize it.
 ///    The `deserialize_*` methods are hints to the deserializer for how to
 ///    interpret the next piece of input. Non-self-describing formats are not
-///    able to deserialize something like `serde_json::Value` which relies on
+///    able to deserialize something like `serde2_json::Value` which relies on
 ///    `Deserializer::deserialize_any`.
 ///
 /// When implementing `Deserialize`, you should avoid relying on
@@ -873,7 +873,7 @@ where
 /// deserialize from self-describing formats only, ruling out Bincode and many
 /// others.
 ///
-/// [Serde data model]: https://serde.rs/data-model.html
+/// [Serde data model]: https://serde2.rs/data-model.html
 ///
 /// # Lifetime
 ///
@@ -881,14 +881,14 @@ where
 /// borrowed from the input when deserializing. See the page [Understanding
 /// deserializer lifetimes] for a more detailed explanation of these lifetimes.
 ///
-/// [Understanding deserializer lifetimes]: https://serde.rs/lifetimes.html
+/// [Understanding deserializer lifetimes]: https://serde2.rs/lifetimes.html
 ///
 /// # Example implementation
 ///
 /// The [example data format] presented on the website contains example code for
 /// a basic JSON `Deserializer`.
 ///
-/// [example data format]: https://serde.rs/data-format.html
+/// [example data format]: https://serde2.rs/data-format.html
 pub trait Deserializer<'de>: Sized {
     /// The error type that can be returned if some error occurs during
     /// deserialization.
@@ -932,7 +932,7 @@ pub trait Deserializer<'de>: Sized {
     where
         V: Visitor<'de>;
 
-    serde_if_integer128! {
+    serde2_if_integer128! {
         /// Hint that the `Deserialize` type is expecting an `i128` value.
         ///
         /// This method is available only on Rust compiler versions >=1.26. The
@@ -966,7 +966,7 @@ pub trait Deserializer<'de>: Sized {
     where
         V: Visitor<'de>;
 
-    serde_if_integer128! {
+    serde2_if_integer128! {
         /// Hint that the `Deserialize` type is expecting an `u128` value.
         ///
         /// This method is available only on Rust compiler versions >=1.26. The
@@ -1175,7 +1175,7 @@ pub trait Deserializer<'de>: Sized {
     /// #     }
     /// # }
     /// #
-    /// use serde::de::{self, Deserialize, Deserializer};
+    /// use serde2::de::{self, Deserialize, Deserializer};
     ///
     /// impl<'de> Deserialize<'de> for Timestamp {
     ///     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -1218,14 +1218,14 @@ pub trait Deserializer<'de>: Sized {
 /// that may be borrowed by `Self::Value`. See the page [Understanding
 /// deserializer lifetimes] for a more detailed explanation of these lifetimes.
 ///
-/// [Understanding deserializer lifetimes]: https://serde.rs/lifetimes.html
+/// [Understanding deserializer lifetimes]: https://serde2.rs/lifetimes.html
 ///
 /// # Example
 ///
 /// ```rust
 /// # use std::fmt;
 /// #
-/// # use serde::de::{self, Unexpected, Visitor};
+/// # use serde2::de::{self, Unexpected, Visitor};
 /// #
 /// /// A visitor that deserializes a long string - a string containing at least
 /// /// some minimum number of bytes.
@@ -1270,7 +1270,7 @@ pub trait Visitor<'de>: Sized {
     /// #     max: usize,
     /// # }
     /// #
-    /// # impl<'de> serde::de::Visitor<'de> for S {
+    /// # impl<'de> serde2::de::Visitor<'de> for S {
     /// #     type Value = ();
     /// #
     /// fn expecting(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
@@ -1336,7 +1336,7 @@ pub trait Visitor<'de>: Sized {
         Err(Error::invalid_type(Unexpected::Signed(v), &self))
     }
 
-    serde_if_integer128! {
+    serde2_if_integer128! {
         /// The input contains a `i128`.
         ///
         /// This method is available only on Rust compiler versions >=1.26. The
@@ -1396,7 +1396,7 @@ pub trait Visitor<'de>: Sized {
         Err(Error::invalid_type(Unexpected::Unsigned(v), &self))
     }
 
-    serde_if_integer128! {
+    serde2_if_integer128! {
         /// The input contains a `u128`.
         ///
         /// This method is available only on Rust compiler versions >=1.26. The
@@ -1665,14 +1665,14 @@ pub trait Visitor<'de>: Sized {
 /// borrowed by deserialized sequence elements. See the page [Understanding
 /// deserializer lifetimes] for a more detailed explanation of these lifetimes.
 ///
-/// [Understanding deserializer lifetimes]: https://serde.rs/lifetimes.html
+/// [Understanding deserializer lifetimes]: https://serde2.rs/lifetimes.html
 ///
 /// # Example implementation
 ///
 /// The [example data format] presented on the website demonstrates an
 /// implementation of `SeqAccess` for a basic JSON data format.
 ///
-/// [example data format]: https://serde.rs/data-format.html
+/// [example data format]: https://serde2.rs/data-format.html
 pub trait SeqAccess<'de> {
     /// The error type that can be returned if some error occurs during
     /// deserialization.
@@ -1747,14 +1747,14 @@ where
 /// borrowed by deserialized map entries. See the page [Understanding
 /// deserializer lifetimes] for a more detailed explanation of these lifetimes.
 ///
-/// [Understanding deserializer lifetimes]: https://serde.rs/lifetimes.html
+/// [Understanding deserializer lifetimes]: https://serde2.rs/lifetimes.html
 ///
 /// # Example implementation
 ///
 /// The [example data format] presented on the website demonstrates an
 /// implementation of `MapAccess` for a basic JSON data format.
 ///
-/// [example data format]: https://serde.rs/data-format.html
+/// [example data format]: https://serde2.rs/data-format.html
 pub trait MapAccess<'de> {
     /// The error type that can be returned if some error occurs during
     /// deserialization.
@@ -1939,14 +1939,14 @@ where
 /// borrowed by the deserialized enum variant. See the page [Understanding
 /// deserializer lifetimes] for a more detailed explanation of these lifetimes.
 ///
-/// [Understanding deserializer lifetimes]: https://serde.rs/lifetimes.html
+/// [Understanding deserializer lifetimes]: https://serde2.rs/lifetimes.html
 ///
 /// # Example implementation
 ///
 /// The [example data format] presented on the website demonstrates an
 /// implementation of `EnumAccess` for a basic JSON data format.
 ///
-/// [example data format]: https://serde.rs/data-format.html
+/// [example data format]: https://serde2.rs/data-format.html
 pub trait EnumAccess<'de>: Sized {
     /// The error type that can be returned if some error occurs during
     /// deserialization.
@@ -1986,14 +1986,14 @@ pub trait EnumAccess<'de>: Sized {
 /// borrowed by the deserialized enum variant. See the page [Understanding
 /// deserializer lifetimes] for a more detailed explanation of these lifetimes.
 ///
-/// [Understanding deserializer lifetimes]: https://serde.rs/lifetimes.html
+/// [Understanding deserializer lifetimes]: https://serde2.rs/lifetimes.html
 ///
 /// # Example implementation
 ///
 /// The [example data format] presented on the website demonstrates an
 /// implementation of `VariantAccess` for a basic JSON data format.
 ///
-/// [example data format]: https://serde.rs/data-format.html
+/// [example data format]: https://serde2.rs/data-format.html
 pub trait VariantAccess<'de>: Sized {
     /// The error type that can be returned if some error occurs during
     /// deserialization. Must match the error type of our `EnumAccess`.
@@ -2005,7 +2005,7 @@ pub trait VariantAccess<'de>: Sized {
     /// `invalid_type` error should be constructed:
     ///
     /// ```rust
-    /// # use serde::de::{self, value, DeserializeSeed, Visitor, VariantAccess, Unexpected};
+    /// # use serde2::de::{self, value, DeserializeSeed, Visitor, VariantAccess, Unexpected};
     /// #
     /// # struct X;
     /// #
@@ -2045,7 +2045,7 @@ pub trait VariantAccess<'de>: Sized {
     /// `invalid_type` error should be constructed:
     ///
     /// ```rust
-    /// # use serde::de::{self, value, DeserializeSeed, Visitor, VariantAccess, Unexpected};
+    /// # use serde2::de::{self, value, DeserializeSeed, Visitor, VariantAccess, Unexpected};
     /// #
     /// # struct X;
     /// #
@@ -2101,7 +2101,7 @@ pub trait VariantAccess<'de>: Sized {
     /// `invalid_type` error should be constructed:
     ///
     /// ```rust
-    /// # use serde::de::{self, value, DeserializeSeed, Visitor, VariantAccess, Unexpected};
+    /// # use serde2::de::{self, value, DeserializeSeed, Visitor, VariantAccess, Unexpected};
     /// #
     /// # struct X;
     /// #
@@ -2148,7 +2148,7 @@ pub trait VariantAccess<'de>: Sized {
     /// `invalid_type` error should be constructed:
     ///
     /// ```rust
-    /// # use serde::de::{self, value, DeserializeSeed, Visitor, VariantAccess, Unexpected};
+    /// # use serde2::de::{self, value, DeserializeSeed, Visitor, VariantAccess, Unexpected};
     /// #
     /// # struct X;
     /// #
@@ -2203,18 +2203,18 @@ pub trait VariantAccess<'de>: Sized {
 /// borrowed from the resulting `Deserializer`. See the page [Understanding
 /// deserializer lifetimes] for a more detailed explanation of these lifetimes.
 ///
-/// [Understanding deserializer lifetimes]: https://serde.rs/lifetimes.html
+/// [Understanding deserializer lifetimes]: https://serde2.rs/lifetimes.html
 ///
 /// # Example
 ///
 /// ```rust
 /// #[macro_use]
-/// extern crate serde_derive;
+/// extern crate serde2_derive;
 ///
-/// extern crate serde;
+/// extern crate serde2;
 ///
 /// use std::str::FromStr;
-/// use serde::de::{value, Deserialize, IntoDeserializer};
+/// use serde2::de::{value, Deserialize, IntoDeserializer};
 ///
 /// #[derive(Deserialize)]
 /// enum Setting {

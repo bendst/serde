@@ -41,7 +41,7 @@ primitive_impl!(f32, serialize_f32);
 primitive_impl!(f64, serialize_f64);
 primitive_impl!(char, serialize_char);
 
-serde_if_integer128! {
+serde2_if_integer128! {
     primitive_impl!(i128, serialize_i128);
     primitive_impl!(u128, serialize_u128);
 }
@@ -391,7 +391,7 @@ deref_impl! {
     /// data structure. Serialization will not attempt to deduplicate these
     /// repeated data.
     ///
-    /// [`"rc"`]: https://serde.rs/feature-flags.html#-features-rc
+    /// [`"rc"`]: https://serde2.rs/feature-flags.html#-features-rc
     <T: ?Sized> Serialize for Rc<T> where T: Serialize
 }
 
@@ -404,7 +404,7 @@ deref_impl! {
     /// data structure. Serialization will not attempt to deduplicate these
     /// repeated data.
     ///
-    /// [`"rc"`]: https://serde.rs/feature-flags.html#-features-rc
+    /// [`"rc"`]: https://serde2.rs/feature-flags.html#-features-rc
     <T: ?Sized> Serialize for Arc<T> where T: Serialize
 }
 
@@ -415,7 +415,7 @@ deref_impl!(<'a, T: ?Sized> Serialize for Cow<'a, T> where T: Serialize + ToOwne
 
 /// This impl requires the [`"rc"`] Cargo feature of Serde.
 ///
-/// [`"rc"`]: https://serde.rs/feature-flags.html#-features-rc
+/// [`"rc"`]: https://serde2.rs/feature-flags.html#-features-rc
 #[cfg(all(feature = "rc", any(feature = "std", feature = "alloc")))]
 impl<T: ?Sized> Serialize for RcWeak<T>
 where
@@ -431,7 +431,7 @@ where
 
 /// This impl requires the [`"rc"`] Cargo feature of Serde.
 ///
-/// [`"rc"`]: https://serde.rs/feature-flags.html#-features-rc
+/// [`"rc"`]: https://serde2.rs/feature-flags.html#-features-rc
 #[cfg(all(feature = "rc", any(feature = "std", feature = "alloc")))]
 impl<T: ?Sized> Serialize for ArcWeak<T>
 where
@@ -474,7 +474,7 @@ nonzero_integers! {
 
 // Currently 128-bit integers do not work on Emscripten targets so we need an
 // additional `#[cfg]`
-serde_if_integer128! {
+serde2_if_integer128! {
     nonzero_integers! {
         NonZeroU128,
     }

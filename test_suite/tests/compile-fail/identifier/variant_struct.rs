@@ -7,7 +7,7 @@
 // except according to those terms.
 
 #[macro_use]
-extern crate serde_derive;
+extern crate serde2_derive;
 
 #[derive(Deserialize)]
 #[serde(variant_identifier)]

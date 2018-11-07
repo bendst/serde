@@ -11,12 +11,12 @@
 //!
 //! ```rust
 //! #[macro_use]
-//! extern crate serde_derive;
+//! extern crate serde2_derive;
 //!
-//! extern crate serde;
+//! extern crate serde2;
 //!
 //! use std::str::FromStr;
-//! use serde::de::{value, Deserialize, IntoDeserializer};
+//! use serde2::de::{value, Deserialize, IntoDeserializer};
 //!
 //! #[derive(Deserialize)]
 //! enum Setting {
@@ -280,7 +280,7 @@ primitive_deserializer!(f32, "an `f32`.", F32Deserializer, visit_f32);
 primitive_deserializer!(f64, "an `f64`.", F64Deserializer, visit_f64);
 primitive_deserializer!(char, "a `char`.", CharDeserializer, visit_char);
 
-serde_if_integer128! {
+serde2_if_integer128! {
     primitive_deserializer!(i128, "an `i128`.", I128Deserializer, visit_i128);
     primitive_deserializer!(u128, "a `u128`.", U128Deserializer, visit_u128);
 }

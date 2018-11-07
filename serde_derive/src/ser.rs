@@ -68,7 +68,7 @@ pub fn expand_derive_serialize(input: &syn::DeriveInput) -> Result<TokenStream, 
             #[allow(unknown_lints)]
             #[cfg_attr(feature = "cargo-clippy", allow(useless_attribute))]
             #[allow(rust_2018_idioms)]
-            extern crate serde as _serde;
+            extern crate serde2 as _serde;
             #try_replacement
             #impl_block
         };

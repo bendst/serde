@@ -17,10 +17,10 @@
 //! these two groups interact with each other, allowing any supported data
 //! structure to be serialized and deserialized using any supported data format.
 //!
-//! See the Serde website [https://serde.rs/] for additional documentation and
+//! See the Serde website [https://serde2.rs/] for additional documentation and
 //! usage examples.
 //!
-//! [https://serde.rs/]: https://serde.rs/
+//! [https://serde2.rs/]: https://serde2.rs/
 //!
 //! ## Design
 //!
@@ -62,33 +62,33 @@
 //! - [Redis], deserialize values from Redis when using [redis-rs].
 //!   *(deserialization only)*
 //!
-//! [JSON]: https://github.com/serde-rs/json
+//! [JSON]: https://github.com/serde2-rs/json
 //! [Bincode]: https://github.com/TyOverby/bincode
 //! [CBOR]: https://github.com/pyfisch/cbor
-//! [YAML]: https://github.com/dtolnay/serde-yaml
+//! [YAML]: https://github.com/dtolnay/serde2-yaml
 //! [MessagePack]: https://github.com/3Hren/msgpack-rust
 //! [TOML]: https://github.com/alexcrichton/toml-rs
-//! [Pickle]: https://github.com/birkenfeld/serde-pickle
+//! [Pickle]: https://github.com/birkenfeld/serde2-pickle
 //! [Hjson]: https://github.com/laktak/hjson-rust
 //! [BSON]: https://github.com/zonyitoo/bson-rs
 //! [Avro]: https://github.com/flavray/avro-rs
-//! [URL]: https://github.com/nox/serde_urlencoded
-//! [XML]: https://github.com/RReverser/serde-xml-rs
+//! [URL]: https://github.com/nox/serde2_urlencoded
+//! [XML]: https://github.com/RReverser/serde2-xml-rs
 //! [Envy]: https://github.com/softprops/envy
-//! [Redis]: https://github.com/OneSignal/serde-redis
+//! [Redis]: https://github.com/OneSignal/serde2-redis
 //! [Cargo]: http://doc.crates.io/manifest.html
 //! [redis-rs]: https://crates.io/crates/redis
 
 ////////////////////////////////////////////////////////////////////////////////
 
 // Serde types in rustdoc of other crates get linked to here.
-#![doc(html_root_url = "https://docs.rs/serde/1.0.80")]
+#![doc(html_root_url = "https://docs.rs/serde2/1.0.80")]
 // Support using Serde without the standard library!
 #![cfg_attr(not(feature = "std"), no_std)]
 // Unstable functionality only if the user asks for it. For tracking and
 // discussion of these features please refer to this issue:
 //
-//    https://github.com/serde-rs/serde/issues/812
+//    https://github.com/serde2-rs/serde2/issues/812
 #![cfg_attr(feature = "unstable", feature(specialization, never_type))]
 #![cfg_attr(feature = "alloc", feature(alloc))]
 #![cfg_attr(feature = "cargo-clippy", allow(renamed_and_removed_lints))]
@@ -261,45 +261,45 @@ pub mod private;
 //
 // This is a workaround for https://github.com/rust-lang/cargo/issues/1286.
 // Without this re-export, crates that put Serde derives behind a cfg_attr would
-// need to use some silly feature name that depends on both serde and
-// serde_derive.
+// need to use some silly feature name that depends on both serde2 and
+// serde2_derive.
 //
 //     [features]
-//     serde-impls = ["serde", "serde_derive"]
+//     serde2-impls = ["serde2", "serde2_derive"]
 //
 //     [dependencies]
-//     serde = { version = "1.0", optional = true }
-//     serde_derive = { version = "1.0", optional = true }
+//     serde2 = { version = "1.0", optional = true }
+//     serde2_derive = { version = "1.0", optional = true }
 //
 //     # Used like this:
-//     # #[cfg(feature = "serde-impls")]
+//     # #[cfg(feature = "serde2-impls")]
 //     # #[macro_use]
-//     # extern crate serde_derive;
+//     # extern crate serde2_derive;
 //     #
-//     # #[cfg_attr(feature = "serde-impls", derive(Serialize, Deserialize))]
+//     # #[cfg_attr(feature = "serde2-impls", derive(Serialize, Deserialize))]
 //     # struct S { /* ... */ }
 //
-// The re-exported derives allow crates to use "serde" as the name of their
+// The re-exported derives allow crates to use "serde2" as the name of their
 // Serde feature which is more intuitive.
 //
 //     [dependencies]
-//     serde = { version = "1.0", optional = true, features = ["derive"] }
+//     serde2 = { version = "1.0", optional = true, features = ["derive"] }
 //
 //     # Used like this:
-//     # #[cfg(feature = "serde")]
+//     # #[cfg(feature = "serde2")]
 //     # #[macro_use]
-//     # extern crate serde;
+//     # extern crate serde2;
 //     #
-//     # #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+//     # #[cfg_attr(feature = "serde2", derive(Serialize, Deserialize))]
 //     # struct S { /* ... */ }
 //
 // The reason re-exporting is not enabled by default is that disabling it would
 // be annoying for crates that provide handwritten impls or data formats. They
 // would need to disable default features and then explicitly re-enable std.
-#[cfg(feature = "serde_derive")]
+#[cfg(feature = "serde2_derive")]
 #[allow(unused_imports)]
 #[macro_use]
-extern crate serde_derive;
-#[cfg(feature = "serde_derive")]
+extern crate serde2_derive;
+#[cfg(feature = "serde2_derive")]
 #[doc(hidden)]
-pub use serde_derive::*;
+pub use serde2_derive::*;

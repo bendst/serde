@@ -18,10 +18,10 @@ use std::fmt::Debug;
 ///
 /// ```rust
 /// # #[macro_use]
-/// # extern crate serde_derive;
+/// # extern crate serde2_derive;
 /// #
-/// # extern crate serde;
-/// # extern crate serde_test;
+/// # extern crate serde2;
+/// # extern crate serde2_test as serde_test;
 /// #
 /// # use serde_test::{assert_tokens, Token};
 /// #
@@ -55,10 +55,10 @@ where
 ///
 /// ```rust
 /// # #[macro_use]
-/// # extern crate serde_derive;
+/// # extern crate serde2_derive;
 /// #
-/// # extern crate serde;
-/// # extern crate serde_test;
+/// # extern crate serde2;
+/// # extern crate serde2_test as serde_test;
 /// #
 /// # use serde_test::{assert_ser_tokens, Token};
 /// #
@@ -100,9 +100,9 @@ where
 ///
 /// ```rust
 /// # #[macro_use]
-/// # extern crate serde_derive;
+/// # extern crate serde2_derive;
 /// #
-/// # extern crate serde_test;
+/// # extern crate serde2_test as serde_test;
 /// #
 /// # fn main() {
 /// use std::sync::{Arc, Mutex};
@@ -155,10 +155,10 @@ where
 ///
 /// ```rust
 /// # #[macro_use]
-/// # extern crate serde_derive;
+/// # extern crate serde2_derive;
 /// #
-/// # extern crate serde;
-/// # extern crate serde_test;
+/// # extern crate serde2;
+/// # extern crate serde2_test as serde_test;
 /// #
 /// # use serde_test::{assert_de_tokens, Token};
 /// #
@@ -215,10 +215,10 @@ where
 ///
 /// ```rust
 /// # #[macro_use]
-/// # extern crate serde_derive;
+/// # extern crate serde2_derive;
 /// #
-/// # extern crate serde;
-/// # extern crate serde_test;
+/// # extern crate serde2;
+/// # extern crate serde2_test as serde_test;
 /// #
 /// # use serde_test::{assert_de_tokens_error, Token};
 /// #

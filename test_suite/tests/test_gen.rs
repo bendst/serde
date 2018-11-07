@@ -14,9 +14,9 @@
 #![cfg_attr(feature = "unstable", feature(non_ascii_idents))]
 
 #[macro_use]
-extern crate serde_derive;
+extern crate serde2_derive;
 
-extern crate serde;
+extern crate serde2 as serde;
 use self::serde::de::{DeserializeOwned, Deserializer};
 use self::serde::ser::{Serialize, Serializer};
 

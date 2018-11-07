@@ -12,7 +12,7 @@ use de::{Deserialize, Deserializer, Error, MapAccess, SeqAccess, Visitor};
 
 /// An efficient way of discarding data from a deserializer.
 ///
-/// Think of this like `serde_json::Value` in that it can be deserialized from
+/// Think of this like `serde2_json::Value` in that it can be deserialized from
 /// any type, except that it does not store any information about the data that
 /// gets deserialized.
 ///
@@ -20,7 +20,7 @@ use de::{Deserialize, Deserializer, Error, MapAccess, SeqAccess, Visitor};
 /// use std::fmt;
 /// use std::marker::PhantomData;
 ///
-/// use serde::de::{
+/// use serde2::de::{
 ///     self, Deserialize, DeserializeSeed, Deserializer, IgnoredAny, SeqAccess, Visitor,
 /// };
 ///

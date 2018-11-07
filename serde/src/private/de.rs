@@ -225,7 +225,7 @@ mod content {
     // rather than for this entire mechanism.
     //
     // This issue is tracking making some of this stuff public:
-    // https://github.com/serde-rs/serde/issues/741
+    // https://github.com/serde2-rs/serde2/issues/741
 
     use lib::*;
 
@@ -238,7 +238,7 @@ mod content {
     /// Used from generated code to buffer the contents of the Deserializer when
     /// deserializing untagged enums and internally tagged enums.
     ///
-    /// Not public API. Use serde-value instead.
+    /// Not public API. Use serde2-value instead.
     #[derive(Debug)]
     pub enum Content<'de> {
         Bool(bool),
@@ -1295,7 +1295,7 @@ mod content {
                 //     struct Info;
                 //
                 //     #[derive(Deserialize)]
-                //     #[serde(tag = "topic")]
+                //     #[serde2(tag = "topic")]
                 //     enum Message {
                 //         Info(Info),
                 //     }
@@ -2523,7 +2523,7 @@ mod content {
 // the newtype fallthrough case of `field_identifier`.
 //
 //    #[derive(Deserialize)]
-//    #[serde(field_identifier)]
+//    #[serde2(field_identifier)]
 //    enum F {
 //        A,
 //        B,

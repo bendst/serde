@@ -7,9 +7,9 @@
 // except according to those terms.
 
 #[macro_use]
-extern crate serde_derive;
+extern crate serde2_derive;
 
-extern crate serde_test;
+extern crate serde2_test as serde_test;
 use serde_test::{assert_de_tokens, Token};
 
 #[test]

@@ -11,10 +11,10 @@
 ///
 /// ```rust
 /// #[macro_use]
-/// extern crate serde;
+/// extern crate serde2;
 ///
-/// use serde::Serializer;
-/// # use serde::private::ser::Error;
+/// use serde2::Serializer;
+/// # use serde2::private::ser::Error;
 /// #
 /// # struct MySerializer;
 ///
@@ -29,7 +29,7 @@
 ///
 ///     /* ... */
 ///
-///     serde_if_integer128! {
+///     serde2_if_integer128! {
 ///         fn serialize_i128(self, v: i128) -> Result<Self::Ok, Self::Error> {
 ///             /* ... */
 /// #             unimplemented!()
@@ -55,7 +55,7 @@
 /// transparently into just the input tokens.
 ///
 /// ```rust
-/// macro_rules! serde_if_integer128 {
+/// macro_rules! serde2_if_integer128 {
 ///     ($($tt:tt)*) => {
 ///         $($tt)*
 ///     };
@@ -66,13 +66,13 @@
 /// nothing.
 ///
 /// ```rust
-/// macro_rules! serde_if_integer128 {
+/// macro_rules! serde2_if_integer128 {
 ///     ($($tt:tt)*) => {};
 /// }
 /// ```
 #[cfg(integer128)]
 #[macro_export]
-macro_rules! serde_if_integer128 {
+macro_rules! serde2_if_integer128 {
     ($($tt:tt)*) => {
         $($tt)*
     };
@@ -81,6 +81,6 @@ macro_rules! serde_if_integer128 {
 #[cfg(not(integer128))]
 #[macro_export]
 #[doc(hidden)]
-macro_rules! serde_if_integer128 {
+macro_rules! serde2_if_integer128 {
     ($($tt:tt)*) => {};
 }

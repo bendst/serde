@@ -25,10 +25,10 @@ use ser::{
 ///
 /// ```rust
 /// # #[macro_use]
-/// # extern crate serde;
+/// # extern crate serde2;
 /// #
-/// # use serde::ser::{Serializer, Impossible};
-/// # use serde::private::ser::Error;
+/// # use serde2::ser::{Serializer, Impossible};
+/// # use serde2::private::ser::Error;
 /// #
 /// # struct MySerializer;
 /// #

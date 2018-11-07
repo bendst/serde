@@ -7,5 +7,5 @@ publish = false
 [workspace]
 
 [dependencies]
-serde = { path = "../../serde" }
-serde_derive = { path = "../../serde_derive" }
+serde2 = { path = "../../serde" }
+serde2_derive = { path = "../../serde_derive" }

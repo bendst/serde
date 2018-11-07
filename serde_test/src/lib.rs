@@ -14,7 +14,7 @@
 //!
 //! The `Serialize` impl for a value can be characterized by the sequence of
 //! [`Serializer`] calls that are made in the course of serializing the value,
-//! so `serde_test` provides a [`Token`] abstraction which corresponds roughly
+//! so `serde2_test` provides a [`Token`] abstraction which corresponds roughly
 //! to `Serializer` method calls. There is an [`assert_ser_tokens`] function to
 //! test that a value serializes to a particular sequence of method calls, an
 //! [`assert_de_tokens`] function to test that a value can be deserialized from
@@ -23,17 +23,17 @@
 //! conditions.
 //!
 //! [`Serializer`]: https://docs.serde.rs/serde/ser/trait.Serializer.html
-//! [`Token`]: https://docs.serde.rs/serde_test/enum.Token.html
-//! [`assert_ser_tokens`]: https://docs.serde.rs/serde_test/fn.assert_ser_tokens.html
-//! [`assert_de_tokens`]: https://docs.serde.rs/serde_test/fn.assert_de_tokens.html
-//! [`assert_tokens`]: https://docs.serde.rs/serde_test/fn.assert_tokens.html
+//! [`Token`]: https://docs.serde.rs/serde2_test/enum.Token.html
+//! [`assert_ser_tokens`]: https://docs.serde.rs/serde2_test/fn.assert_ser_tokens.html
+//! [`assert_de_tokens`]: https://docs.serde.rs/serde2_test/fn.assert_de_tokens.html
+//! [`assert_tokens`]: https://docs.serde.rs/serde2_test/fn.assert_tokens.html
 //!
 //! Here is an example from the [`linked-hash-map`] crate.
 //!
 //! [`linked-hash-map`]: https://github.com/contain-rs/linked-hash-map
 //!
 //! ```rust
-//! # extern crate serde;
+//! # extern crate serde2 as serde;
 //! #
 //! # macro_rules! ignore {
 //! #     ($($tt:tt)+) => {}
@@ -44,7 +44,7 @@
 //! use linked_hash_map::LinkedHashMap;
 //! # }
 //!
-//! extern crate serde_test;
+//! extern crate serde2_test as serde_test;
 //! use serde_test::{Token, assert_tokens};
 //!
 //! # use std::fmt;
@@ -161,7 +161,7 @@
 //! # }
 //! ```
 
-#![doc(html_root_url = "https://docs.rs/serde_test/1.0.80")]
+#![doc(html_root_url = "https://docs.rs/serde2_test/1.0.80")]
 #![cfg_attr(feature = "cargo-clippy", allow(renamed_and_removed_lints))]
 #![cfg_attr(feature = "cargo-clippy", deny(clippy, clippy_pedantic))]
 // Whitelisted clippy lints
@@ -180,7 +180,7 @@
 )]
 
 #[macro_use]
-extern crate serde;
+extern crate serde2 as serde;
 
 mod de;
 mod error;

@@ -9,7 +9,7 @@
 #![cfg_attr(feature = "unstable", feature(never_type))]
 
 #[macro_use]
-extern crate serde_derive;
+extern crate serde2_derive;
 
 use std::cell::RefCell;
 use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet};
@@ -25,7 +25,7 @@ use std::time::{Duration, UNIX_EPOCH};
 #[cfg(unix)]
 use std::str;
 
-extern crate serde_test;
+extern crate serde2_test as serde_test;
 use self::serde_test::{assert_ser_tokens, assert_ser_tokens_error, Configure, Token};
 
 extern crate fnv;

@@ -15,8 +15,8 @@ pub struct Compact<T: ?Sized>(T);
 /// compact form.
 ///
 /// ```
-/// extern crate serde;
-/// extern crate serde_test;
+/// extern crate serde2 as serde;
+/// extern crate serde2_test as serde_test;
 ///
 /// use serde::{Deserialize, Deserializer, Serialize, Serializer};
 /// use serde_test::{assert_tokens, Configure, Token};

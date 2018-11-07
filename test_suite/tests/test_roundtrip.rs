@@ -6,7 +6,7 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-extern crate serde_test;
+extern crate serde2_test as serde_test;
 use self::serde_test::{assert_tokens, Configure, Token};
 
 use std::net;

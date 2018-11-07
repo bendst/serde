@@ -1,5 +1,5 @@
 [package]
-name = "serde_test"
+name = "serde2_test"
 version = "1.0.80" # remember to update html_root_url
 authors = ["Erick Tryzelaar <erick.tryzelaar@gmail.com>", "David Tolnay <dtolnay@gmail.com>"]
 license = "MIT/Apache-2.0"
@@ -12,11 +12,11 @@ readme = "crates-io.md"
 include = ["Cargo.toml", "src/**/*.rs", "crates-io.md", "README.md", "LICENSE-APACHE", "LICENSE-MIT"]
 
 [dependencies]
-serde = { version = "1.0.60", path = "../serde" }
+serde2 = { version = "1.0.60", path = "../serde" }
 
 [dev-dependencies]
-serde = { version = "1.0", path = "../serde", features = ["rc"] }
-serde_derive = { version = "1.0", path = "../serde_derive" }
+serde2 = { version = "1.0", path = "../serde", features = ["rc"] }
+serde2_derive = { version = "1.0", path = "../serde_derive" }
 
 [badges]
 travis-ci = { repository = "serde-rs/serde" }

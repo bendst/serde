@@ -14,7 +14,7 @@
 #![cfg_attr(feature = "unstable", feature(never_type))]
 
 #[macro_use]
-extern crate serde_derive;
+extern crate serde2_derive;
 
 use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet};
 use std::default::Default;
@@ -26,13 +26,13 @@ use std::rc::{Rc, Weak as RcWeak};
 use std::sync::{Arc, Weak as ArcWeak};
 use std::time::{Duration, UNIX_EPOCH};
 
-extern crate serde;
+extern crate serde2 as serde;
 use serde::{Deserialize, Deserializer};
 
 extern crate fnv;
 use self::fnv::FnvHasher;
 
-extern crate serde_test;
+extern crate serde2_test as serde_test;
 use self::serde_test::{assert_de_tokens, assert_de_tokens_error, Configure, Token};
 
 #[macro_use]
